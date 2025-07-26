@@ -1,7 +1,7 @@
 <?php
 
 pageBanner(array(
-  'title' => 'All Events',
+  'title' => 'All Events ',
   'subtitle' => 'See what is going on in our world.'
 ));
  ?>
