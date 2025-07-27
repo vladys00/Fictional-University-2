@@ -30,13 +30,54 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function Edit() {
+function Edit(props) {
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)();
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useEffect)(function () {
+    if (props.attributes.imgID) {
+      async function go() {
+        const response = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default()({
+          path: `/wp/v2/media/${props.attributes.imgID}`,
+          method: "GET"
+        });
+        props.setAttributes({
+          imgURL: response.media_details.sizes.pageBanner.source_url
+        });
+      }
+      go();
+    }
+  }, [props.attributes.imgID]);
+  function onFileSelect(x) {
+    props.setAttributes({
+      imgID: x.id
+    });
+  }
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "Background",
+    initialOpen: true
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaUpload, {
+    onSelect: onFileSelect,
+    value: props.attributes.imgID,
+    render: ({
+      open
+    }) => {
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+        onClick: open
+      }, "Choose Image");
+    }
+  }))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "page-banner"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "our-placeholder-block"
-  }, "University Banner Placeholder"));
+    className: "page-banner__bg-image",
+    style: {
+      backgroundImage: `url('${props.attributes.imgURL}')`
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "page-banner__content container t-center c-white"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks, {
+    allowedBlocks: ["ourblocktheme/genericheading", "ourblocktheme/genericbutton"]
+  }))));
 }
 
 /***/ }),
@@ -107,7 +148,7 @@ module.exports = window["wp"]["element"];
   \*******************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/banner","title":"Fictional University Banner","editorScript":"file:./index.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/banner","title":"Fictional University Banner","editorScript":"file:./index.js","render":"file:./render.php","supports":{"align":["full"],"attributes":{"align":{"type":"string","default":"full"},"imgID":{"type":"number"},"imgURL":{"type":"string"}}}}');
 
 /***/ })
 

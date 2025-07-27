@@ -5,7 +5,7 @@ import { registerBlockType } from "@wordpress/blocks"
 import { useEffect } from "@wordpress/element"
 
 
-export default function Edit() {
+export default function Edit(props) {
   const blockProps = useBlockProps()
 
   useEffect(
