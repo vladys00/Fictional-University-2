@@ -220,64 +220,6 @@ function our_new_blocks() {
 
 add_action('init', 'our_new_blocks');
 
-// new PlaceholderBlock("eventsandblogs");
-// new PlaceholderBlock("header");
-// new PlaceholderBlock("footer");
-// new PlaceholderBlock("singlepost");
-// new PlaceholderBlock("page");
-// new PlaceholderBlock("blogindex");
-// new PlaceholderBlock("programarchive");
-// new PlaceholderBlock("singleprogram");
-// new PlaceholderBlock("singleprofessor");
-// new PlaceholderBlock("mynotes");
-// new PlaceholderBlock("archivecampus");
-// new PlaceholderBlock("archiveevent");
-// new PlaceholderBlock("archive");
-// new PlaceholderBlock("pastevents");
-// new PlaceholderBlock("search");
-// new PlaceholderBlock("searchresults");
-// new PlaceholderBlock("singlecampus");
-// new PlaceholderBlock("singleevent");
-
-class JSXBlock {
-  function __construct($name, $renderCallback = null, $data = null) {
-    $this->name = $name;
-    $this->data = $data;
-    $this->renderCallback = $renderCallback;
-    add_action('init', [$this, 'onInit']);
-  }
-
-  function ourRenderCallback($attributes, $content) {
-    ob_start();
-    require get_theme_file_path("/our-blocks/{$this->name}.php");
-    return ob_get_clean();
-  }
-
-  function onInit() {
-    wp_register_script($this->name, get_stylesheet_directory_uri() . "/build/{$this->name}.js", array('wp-blocks', 'wp-editor'));
-    
-    if ($this->data) {
-      wp_localize_script($this->name, $this->name, $this->data);
-    }
-
-    $ourArgs = array(
-      'editor_script' => $this->name
-    );
-
-    if ($this->renderCallback) {
-      $ourArgs['render_callback'] = [$this, 'ourRenderCallback'];
-    }
-
-    register_block_type("ourblocktheme/{$this->name}", $ourArgs);
-  }
-}
-
-new JSXBlock('banner', true, ['fallbackimage' => get_theme_file_uri('/images/library-hero.jpg')]);
-new JSXBlock('genericheading');
-new JSXBlock('genericbutton');
-new JSXBlock('slideshow', true);
-new JSXBlock('slide', true, ['themeimagepath' => get_theme_file_uri('/images/')]);
-
 function myallowedblocks($allowed_block_types, $editor_context) {
   // If you are on a page/post editor screen
   if (!empty($editor_context->post)) {
