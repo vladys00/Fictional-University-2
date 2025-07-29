@@ -6,7 +6,14 @@ import { useEffect } from "@wordpress/element"
 
 
 export default function Edit(props) {
-  const blockProps = useBlockProps()
+  const blockProps = useBlockProps();
+  
+  useEffect(() => {
+    if (!props.attributes.imgURL) {
+      props.setAttributes({ imgURL: ourThemeData.themePath + "/images/library-hero.jpg" })
+    }
+
+  })
 
   useEffect(
     function () {

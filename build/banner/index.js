@@ -32,6 +32,13 @@ __webpack_require__.r(__webpack_exports__);
 
 function Edit(props) {
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)();
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useEffect)(() => {
+    if (!props.attributes.imgURL) {
+      props.setAttributes({
+        imgURL: ourThemeData.themePath + "/images/library-hero.jpg"
+      });
+    }
+  });
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useEffect)(function () {
     if (props.attributes.imgID) {
       async function go() {

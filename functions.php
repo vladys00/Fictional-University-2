@@ -198,6 +198,8 @@ class PlaceholderBlock {
 
 // Register our new blocks
 function our_new_blocks() {
+  wp_localize_script('wp-editor', 'ourThemeData', array('themePath'=> get_stylesheet_directory_uri()));
+  
   register_block_type_from_metadata(__DIR__ . '/build/banner');
   register_block_type_from_metadata(__DIR__ . '/build/footer');
   register_block_type_from_metadata(__DIR__ . '/build/header');
