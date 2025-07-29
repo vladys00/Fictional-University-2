@@ -199,7 +199,8 @@ class PlaceholderBlock {
 // Register our new blocks
 function our_new_blocks() {
   wp_localize_script('wp-editor', 'ourThemeData', array('themePath'=> get_stylesheet_directory_uri()));
-  
+
+  register_block_type_from_metadata(__DIR__ . '/build/slide');
   register_block_type_from_metadata(__DIR__ . '/build/banner');
   register_block_type_from_metadata(__DIR__ . '/build/footer');
   register_block_type_from_metadata(__DIR__ . '/build/header');
@@ -262,7 +263,7 @@ class JSXBlock {
 new JSXBlock('genericheading');
 new JSXBlock('genericbutton');
 new JSXBlock('slideshow', true);
-new JSXBlock('slide', true, ['themeimagepath' => get_theme_file_uri('/images/')]);
+//new JSXBlock('slide', true, ['themeimagepath' => get_theme_file_uri('/images/')]);
 
 function myallowedblocks($allowed_block_types, $editor_context) {
   // If you are on a page/post editor screen
