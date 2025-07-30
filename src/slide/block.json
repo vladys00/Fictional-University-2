@@ -5,14 +5,14 @@
   "title": "Fictional University Slide",
   "editorScript": "file:./index.js",
   "render": "file:./render.php",
-   "supports": {
-    "align": ["full"],
+  "supports": {
+    "align": ["full"]
+  },
     "attributes": {
-    "DUMMY ATTRIBUTE": {"type": "string" },
+    "dummyAttribute": {"type": "string" },
     "themeimage": { "type": "string" },
     "align": { "type": "string", "default": "full" },
     "imgID": { "type": "number" },
     "imgURL": { "type": "string" }
-  }
   }
 }

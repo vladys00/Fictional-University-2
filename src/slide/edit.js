@@ -7,6 +7,7 @@ import { useEffect } from "@wordpress/element"
 export default function Edit(props) {
   const blockProps = useBlockProps();
   console.log("HELLO PROPS-->",props)
+  console.log("our theme data-->",ourThemeData)
   useEffect(function () {
       if (props.attributes.themeimage) {
         props.setAttributes({ imgURL: `${ourThemeData.themePath}/images/${props.attributes.themeimage}` })
@@ -53,6 +54,7 @@ export default function Edit(props) {
             </PanelRow>
           </PanelBody>
         </InspectorControls>
+
         <div {...blockProps}>
           <div className="hero-slider__slide" style={{ backgroundImage: `url('${props.attributes.imgURL}')` }}>
             <div className="hero-slider__interior container">

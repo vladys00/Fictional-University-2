@@ -30,6 +30,7 @@ __webpack_require__.r(__webpack_exports__);
 function Edit(props) {
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)();
   console.log("HELLO PROPS-->", props);
+  console.log("our theme data-->", ourThemeData);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(function () {
     if (props.attributes.themeimage) {
       props.setAttributes({
@@ -159,7 +160,7 @@ module.exports = window["wp"]["element"];
   \******************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/slide","title":"Fictional University Slide","editorScript":"file:./index.js","render":"file:./render.php","supports":{"align":["full"],"attributes":{"DUMMY ATTRIBUTE":{"type":"string"},"themeimage":{"type":"string"},"align":{"type":"string","default":"full"},"imgID":{"type":"number"},"imgURL":{"type":"string"}}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/slide","title":"Fictional University Slide","editorScript":"file:./index.js","render":"file:./render.php","supports":{"align":["full"]},"attributes":{"dummyAttribute":{"type":"string"},"themeimage":{"type":"string"},"align":{"type":"string","default":"full"},"imgID":{"type":"number"},"imgURL":{"type":"string"}}}');
 
 /***/ })
 
