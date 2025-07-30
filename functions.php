@@ -199,7 +199,9 @@ class PlaceholderBlock {
 // Register our new blocks
 function our_new_blocks() {
   wp_localize_script('wp-editor', 'ourThemeData', array('themePath'=> get_stylesheet_directory_uri()));
-  
+
+  register_block_type_from_metadata(__DIR__ . '/build/genericbutton');
+  register_block_type_from_metadata(__DIR__ . '/build/genericheading');
   register_block_type_from_metadata(__DIR__ . '/build/slideshow');
   register_block_type_from_metadata(__DIR__ . '/build/slide');
   register_block_type_from_metadata(__DIR__ . '/build/banner');
@@ -261,8 +263,8 @@ class JSXBlock {
 }
 
 //new JSXBlock('banner', true, ['fallbackimage' => get_theme_file_uri('/images/library-hero.jpg')]);
-new JSXBlock('genericheading');
-new JSXBlock('genericbutton');
+//new JSXBlock('genericheading');
+//new JSXBlock('genericbutton');
 //new JSXBlock('slideshow', true);
 //new JSXBlock('slide', true, ['themeimagepath' => get_theme_file_uri('/images/')]);
 

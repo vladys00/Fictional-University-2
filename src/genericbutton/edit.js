@@ -1,23 +1,14 @@
-import ourColors from "../inc/ourColors"
+import { useBlockProps } from "@wordpress/block-editor"
+import ourColors from "../../inc/ourColors.js"
 import { link } from "@wordpress/icons"
 import { ToolbarGroup, ToolbarButton, Popover, Button, PanelBody, PanelRow, ColorPalette } from "@wordpress/components"
 import { RichText, InspectorControls, BlockControls, __experimentalLinkControl as LinkControl, getColorObjectByColorValue } from "@wordpress/block-editor"
-import { registerBlockType } from "@wordpress/blocks"
 import { useState } from "@wordpress/element"
 
-registerBlockType("ourblocktheme/genericbutton", {
-  title: "Generic Button",
-  attributes: {
-    text: { type: "string" },
-    size: { type: "string", default: "large" },
-    linkObject: { type: "object", default: { url: "" } },
-    colorName: { type: "string", default: "blue" }
-  },
-  edit: EditComponent,
-  save: SaveComponent
-})
 
-function EditComponent(props) {
+export default function EditComponent(props) {
+  const blockProps = useBlockProps()
+
   const [isLinkPickerVisible, setIsLinkPickerVisible] = useState(false)
 
   function handleTextChange(x) {
@@ -43,7 +34,7 @@ function EditComponent(props) {
   }
 
   return (
-    <>
+    <div {...useBlockProps}>
       <BlockControls>
         <ToolbarGroup>
           <ToolbarButton onClick={buttonHandler} icon={link} />
@@ -76,14 +67,6 @@ function EditComponent(props) {
           </Button>
         </Popover>
       )}
-    </>
-  )
-}
-
-function SaveComponent(props) {
-  return (
-    <a href={props.attributes.linkObject.url} className={`btn btn--${props.attributes.size} btn--${props.attributes.colorName}`}>
-      {props.attributes.text}
-    </a>
+    </div>
   )
 }
